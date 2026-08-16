@@ -1,0 +1,8 @@
+{
+  "buildCommand": "ng build --configuration production",
+  "outputDirectory": "dist/leave-management-app/browser",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

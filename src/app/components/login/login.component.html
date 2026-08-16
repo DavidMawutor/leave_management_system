@@ -1,0 +1,76 @@
+<div class="login-screen" [class.admin-theme]="mode === 'admin'">
+  <div class="login-card">
+
+    <div class="brand-block">
+      <div class="brand-mark">LM</div>
+      <h1>Leave Management</h1>
+      <p class="brand-sub">Sign in to continue</p>
+    </div>
+
+    <div class="role-tabs" role="tablist">
+      <button
+        type="button"
+        role="tab"
+        class="role-tab"
+        [class.active]="mode === 'user'"
+        (click)="switchMode('user')">
+        Staff Login
+      </button>
+      <button
+        type="button"
+        role="tab"
+        class="role-tab"
+        [class.active]="mode === 'admin'"
+        (click)="switchMode('admin')">
+        Admin Login
+      </button>
+    </div>
+
+    <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <div class="field">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          required
+          autocomplete="username"
+          placeholder="Enter your username">
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+          placeholder="Enter your password">
+      </div>
+
+      @if (errorMessage) {
+        <p class="error-text">{{ errorMessage }}</p>
+      }
+
+      <button type="submit" class="btn-primary" [disabled]="loginForm.invalid || submitting">
+        {{ mode === 'admin' ? 'Sign in as Admin' : 'Sign in as Staff' }}
+      </button>
+    </form>
+
+    <div class="test-creds">
+      <div class="test-creds-header">
+        <span>Testing this build?</span>
+        <button type="button" class="link-btn" (click)="fillTestCredentials()">Autofill test login</button>
+      </div>
+      <p class="test-creds-values">
+        Username: <code>{{ testCredential.username }}</code> &nbsp;·&nbsp;
+        Password: <code>{{ testCredential.password }}</code>
+      </p>
+      <p class="test-creds-note">These demo credentials will be replaced once the app is connected to a real user database.</p>
+    </div>
+
+  </div>
+</div>

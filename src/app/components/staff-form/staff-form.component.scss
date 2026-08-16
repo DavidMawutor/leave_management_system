@@ -1,0 +1,185 @@
+.system-navbar {
+  background: linear-gradient(120deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  padding: 1.35rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-md);
+
+  .scope-pill {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .system-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    margin: 0;
+    flex: 1;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.12);
+    padding: 0.4rem 0.75rem;
+    border-radius: 999px;
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      background-color: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.3);
+    }
+  }
+
+  .welcome-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+
+  .switch-role-btn,
+  .logout-btn {
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+  }
+
+  .logout-btn {
+    border-color: transparent;
+    background: rgba(220, 38, 38, 0.85);
+
+    &:hover {
+      background: #dc2626;
+    }
+  }
+}
+
+.form-wrapper {
+  max-width: 1100px;
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+
+  .grid-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+    background-color: var(--color-surface);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      &.full-width {
+        grid-column: span 2;
+      }
+
+      &.semi-width {
+        grid-column: span 1;
+      }
+
+      label {
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #334155;
+      }
+
+      input,
+      textarea {
+        background-color: #f8fafc;
+        border: 1.5px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 0.9rem;
+        font-size: 0.98rem;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        font-family: inherit;
+
+        &:focus {
+          border-color: var(--color-primary);
+          background: #fff;
+          box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
+        }
+      }
+
+      textarea {
+        resize: vertical;
+      }
+    }
+  }
+}
+
+.action-dock {
+  grid-column: span 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 1rem;
+
+  .btn {
+    border: none;
+    padding: 0.75rem 1.9rem;
+    font-size: 0.98rem;
+    font-weight: 700;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #fff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &-submit { background: linear-gradient(120deg, var(--color-primary), var(--color-primary-dark)); }
+    &-close { background-color: var(--color-danger); }
+    &-clear { background-color: #64748b; }
+    &-download { background-color: var(--color-success); }
+
+    &:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}

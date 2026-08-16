@@ -1,0 +1,72 @@
+<div class="admin-container">
+  <header class="system-navbar admin-variant">
+    <span class="scope-pill">MANAGEMENT DESK</span>
+    <h1 class="system-title">LEAVE APPROVAL ARCHIVE</h1>
+    <div class="header-actions">
+      @if (currentUser(); as user) {
+        <span class="welcome-text">Hi, {{ user.username }}</span>
+      }
+      <button type="button" class="switch-role-btn" (click)="switchToUser()">Switch to User ⇄</button>
+      <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <nav class="navigation-tabs">
+    <button class="tab-anchor" [class.active]="currentTab === 'Pending'" (click)="setTab('Pending')">PENDING ITEMS</button>
+    <button class="tab-anchor" [class.active]="currentTab === 'Approved'" (click)="setTab('Approved')">APPROVED REGISTRY</button>
+    <button class="tab-anchor" [class.active]="currentTab === 'Denied'" (click)="setTab('Denied')">DENIED ENTRIES</button>
+  </nav>
+
+  <main class="dashboard-viewport">
+    
+    @if (!focusedRecord) {
+      <div class="list-envelope">
+        @for (record of filteredRecords; track record.formId) {
+          <div class="card-item" [ngClass]="{
+            'border-pending': record.status === 'Pending',
+            'border-approved': record.status === 'Approved',
+            'border-denied': record.status === 'Denied'
+          }">
+            <div class="card-identity-block">
+              <h3>{{ record.fullname }} — {{ record.idNumber }}</h3>
+              <p class="dept-sub">{{ record.department }} ({{ record.role }})</p>
+              <p class="excerpt">{{ record.reason }}</p>
+            </div>
+            <div class="card-meta-block">
+              <span class="timestamp-stamp">{{ record.applicationDate | date:'dd MMM yyyy' }}</span>
+              <span class="id-index-display">#{{ record.formId }}</span>
+              <button class="action-chevron" (click)="inspect(record)">⚙️ Inspect</button>
+            </div>
+          </div>
+        } @empty {
+          <div class="empty-state">No matching leave records discovered under the current tracking tier.</div>
+        }
+      </div>
+    }
+
+    @if (focusedRecord) {
+      <div class="inspector-card animate-fade">
+        <div class="inspect-field-grid">
+          <div class="field text-span-2"><strong>Fullname:</strong> <span>{{ focusedRecord.fullname }}</span></div>
+          <div class="field"><strong>Contact Reference:</strong> <span>{{ focusedRecord.contact }}</span></div>
+          <div class="field"><strong>Routing Email:</strong> <span>{{ focusedRecord.email }}</span></div>
+          <div class="field"><strong>Department Section:</strong> <span>{{ focusedRecord.department }}</span></div>
+          <div class="field"><strong>Role Assignment:</strong> <span>{{ focusedRecord.role }}</span></div>
+          <div class="field"><strong>Corporate ID:</strong> <span>{{ focusedRecord.idNumber }}</span></div>
+          <div class="field text-span-2"><strong>Reason Context:</strong> <span class="block-text">{{ focusedRecord.reason }}</span></div>
+          <div class="field"><strong>Effective Date:</strong> <span>{{ focusedRecord.effectiveDate | date:'fullDate' }}</span></div>
+          <div class="field"><strong>Resuming Work Date:</strong> <span>{{ focusedRecord.resumingDate | date:'fullDate' }}</span></div>
+        </div>
+
+        <footer class="inspector-actions">
+          @if (focusedRecord.status === 'Pending') {
+            <button class="btn btn-action-approve" (click)="updateStatus('Approved')">Approve Request</button>
+            <button class="btn btn-action-deny" (click)="updateStatus('Denied')">Deny Request</button>
+          }
+          <button class="btn btn-action-back" (click)="closeInspector()">Back to Logs</button>
+        </footer>
+      </div>
+    }
+
+  </main>
+</div>

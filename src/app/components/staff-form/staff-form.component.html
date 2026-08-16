@@ -1,0 +1,75 @@
+<div class="user-container">
+  <header class="system-navbar">
+    <span class="scope-pill">USER INTERFACE</span>
+    <h1 class="system-title">STAFF LEAVE FORM</h1>
+    <div class="header-actions">
+      <div class="status-badge">
+        <span class="status-indicator"></span>
+        STATUS: ACTIVE SYSTEM
+      </div>
+      @if (currentUser(); as user) {
+        <span class="welcome-text">Hi, {{ user.username }}</span>
+      }
+      <button type="button" class="switch-role-btn" (click)="switchToAdmin()">Switch to Admin ⇄</button>
+      <button type="button" class="logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </header>
+
+  <main class="form-wrapper">
+    <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()" class="grid-form">
+      
+      <div class="form-row full-width">
+        <label for="fullname">Fullname</label>
+        <input type="text" id="fullname" formControlName="fullname" placeholder="Enter complete legal name">
+      </div>
+
+      <div class="form-row">
+        <label for="contact">Contact(s)</label>
+        <input type="text" id="contact" formControlName="contact" placeholder="Phone details">
+      </div>
+
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="Corporate email layout">
+      </div>
+
+      <div class="form-row">
+        <label for="department">Department</label>
+        <input type="text" id="department" formControlName="department" placeholder="Assigned workspace branch">
+      </div>
+
+      <div class="form-row">
+        <label for="role">Role</label>
+        <input type="text" id="role" formControlName="role" placeholder="Current job title">
+      </div>
+
+      <div class="form-row semi-width">
+        <label for="idNumber">ID Number</label>
+        <input type="text" id="idNumber" formControlName="idNumber" placeholder="Employee registration key">
+      </div>
+
+      <div class="form-row full-width">
+        <label for="reason">Reason for leave</label>
+        <textarea id="reason" formControlName="reason" rows="5" placeholder="Provide description criteria parameters..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <label for="effectiveDate">Effective Date</label>
+        <input type="date" id="effectiveDate" formControlName="effectiveDate">
+      </div>
+
+      <div class="form-row">
+        <label for="resumingDate">Resuming Date</label>
+        <input type="date" id="resumingDate" formControlName="resumingDate">
+      </div>
+
+      <footer class="action-dock">
+        <button type="submit" class="btn btn-submit" [disabled]="leaveForm.invalid">Submit</button>
+        <button type="button" class="btn btn-close" (click)="onClose()">Close</button>
+        <button type="button" class="btn btn-clear" (click)="onClear()">Clear form</button>
+        <button type="button" class="btn btn-download" (click)="triggerDownload()">Download Excel/CSV History</button>
+      </footer>
+
+    </form>
+  </main>
+</div>
