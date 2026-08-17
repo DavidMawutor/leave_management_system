@@ -35,7 +35,8 @@
             <div class="card-meta-block">
               <span class="timestamp-stamp">{{ record.applicationDate | date:'dd MMM yyyy' }}</span>
               <span class="id-index-display">#{{ record.formId }}</span>
-              <button class="action-chevron" (click)="inspect(record)">⚙️ Inspect</button>
+              <!-- <button class="action-chevron" (click)="inspect(record)">⚙️ Inspect</button> -->
+              <button class="action-chevron" (click)="inspect(record)"><i class="fa-solid fa-eye">Inspect</i></button>
             </div>
           </div>
         } @empty {
