@@ -1,5 +1,6 @@
 <div class="admin-container">
   <header class="system-navbar admin-variant">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <span class="scope-pill">MANAGEMENT DESK</span>
     <h1 class="system-title">LEAVE APPROVAL ARCHIVE</h1>
     <div class="header-actions">
@@ -36,7 +37,7 @@
               <span class="timestamp-stamp">{{ record.applicationDate | date:'dd MMM yyyy' }}</span>
               <span class="id-index-display">#{{ record.formId }}</span>
               <!-- <button class="action-chevron" (click)="inspect(record)">⚙️ Inspect</button> -->
-              <button class="action-chevron" (click)="inspect(record)"><i class="fa-solid fa-eye">Inspect</i></button>
+              <button class="action-chevron" (click)="inspect(record)"><i class="fa-solid fa-eye"></i>Inspect</button>
             </div>
           </div>
         } @empty {
